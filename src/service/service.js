@@ -1,19 +1,22 @@
 'use strict';
 
-const {Cli} = require(`./cli`);
-// const {
-//   DEFAULT_COMMAND = help,
-//   USER_ARGV_INDEX = 2,
-//   ExitCode
-// } = require(`../constants`);
+const cli = require(`./cli`);
+const {
+  DEFAULT_COMMAND,
+  USER_ARGV_INDEX,
+  ExitCode,
+} = require(`../constants`);
 
 
-const userArguments = process.argv.slice(2);
-const [userCommand] = userArguments;
+const userArguments = process.argv.slice(USER_ARGV_INDEX);
 
-if (userArguments.length === 0 || !Cli[userCommand]) {
-  // Cli[DEFAULT_COMMAND].run();
-  process.exit(1);
+const userCommand = userArguments[0];
+
+const count = userArguments[1];
+
+if (userArguments.length === 0 || !cli[userCommand]) {
+  cli[DEFAULT_COMMAND].run();
+  process.exit(ExitCode.success);
 }
 
-Cli[userCommand].run(userArguments.slice(1));
+cli[userCommand].run(count);

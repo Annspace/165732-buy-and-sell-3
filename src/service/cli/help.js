@@ -10,9 +10,11 @@ const helpText = `Программа запускает http-сервер и ф�
           --generate <count>    формирует файл mocks.json
     `;
 
+const run = () => {
+  console.info(helpText);
+};
+
 module.exports = {
   name: `--help`,
-  run() {
-    console.info(helpText);
-  }
+  run,
 };
