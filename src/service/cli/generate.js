@@ -35,6 +35,7 @@ const writeToFile = async (data, fileName = FILE_NAME) => {
     console.log(chalk.green(`Operation success. File created.`));
   } catch (err) {
     console.error(chalk.red(`Can't write data to file...`));
+    process.exit(ExitCode.error);
   }
 };
 
