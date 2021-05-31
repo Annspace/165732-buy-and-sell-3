@@ -1,7 +1,7 @@
 # Учебный проект «Куплю. Продам» [![Build status][travis-image]][travis-url]
 
 * Студент: [Анна Куренкова](https://up.htmlacademy.ru/nodejs/3/user/165732).
-* Наставник: [Дмитрий Мирошниченко](https://htmlacademy.ru/profile/id591417).
+* Наставник: [Вадим Осюков](https://htmlacademy.ru/profile/id1411353).
 
 ---
 

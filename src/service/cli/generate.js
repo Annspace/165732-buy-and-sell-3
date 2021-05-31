@@ -1,6 +1,7 @@
 'use strict';
 
-const fs = require(`fs`);
+const fs = require(`fs`).promises;
+const chalk = require(`chalk`);
 
 const {getRandomInt, shuffle, getPictureFileName} = require(`../../utils`);
 
@@ -28,28 +29,26 @@ const generateOffers = (count) => (
   }))
 );
 
-const writeToFile = (data, fileName = FILE_NAME) => {
-
-  fs.writeFile(fileName, data, (err) => {
-    if (err) {
-      return console.error(`Can't write data to file...`);
-    }
-
-    return console.info(`Operation success. File created.`);
-  });
+const writeToFile = async (data, fileName = FILE_NAME) => {
+  try {
+    await fs.writeFile(fileName, data);
+    console.log(chalk.green(`Operation success. File created.`));
+  } catch (err) {
+    throw new Error(chalk.red(`Can't write data to file...`));
+  }
 };
 
-const run = (count) => {
+const run = async (count) => {
   const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
 
   if (countOffer > MAX_OFFERS) {
-    console.info(`Не больше ${MAX_OFFERS} объявлений`);
+    console.error(chalk.red(`Не больше ${MAX_OFFERS} объявлений`));
     process.exit(ExitCode.success);
   }
 
   const content = JSON.stringify(generateOffers(countOffer));
 
-  writeToFile(content);
+  await writeToFile(content);
 
 };
 
